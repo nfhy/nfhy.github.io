@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>WALTER`s BLOG</title>
+  
+  <subtitle>双手握住简单的快乐</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-12-27T01:50:25.525Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Walter</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java Throwable/Error/Exception</title>
+    <link href="http://yoursite.com/2019/12/26/Throwable-Error-Exception/"/>
+    <id>http://yoursite.com/2019/12/26/Throwable-Error-Exception/</id>
+    <published>2019-12-26T12:33:09.000Z</published>
+    <updated>2019-12-27T01:50:25.525Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Exception-与-Error&quot;&gt;&lt;a href=&quot;#Exception-与-Error&quot; class=&quot;headerlink&quot; title=&quot;Exception 与 Error&quot;&gt;&lt;/a&gt;Exception 与 Error&lt;/h2&gt;&lt;p&gt;总结：&lt;/p&gt;
+&lt;o
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
