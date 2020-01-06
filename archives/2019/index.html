@@ -203,6 +203,64 @@
 </article>
     </div>
   
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2019/01/06/Throwable-Error-Exception%20copy/">
+        redis缓存实现
+      </a>
+    </h2>
+    
+    <time>
+      1月 6, 2019
+    </time>
+		
+  </section>
+  <section class="article typo">
+	  <h2 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a>设计要求</h2><p>系统数据字典类数据属于读远大于写的业务数据，在业务层和数据层之间插入缓存层可以极大提高读取速度。但需要解决如下问题：</p>
+<ol>
+<li>数据同步，数据新增/删除/修改时同步缓存数据</li>
+<li>缓存穿透/击穿/雪崩问题避免</li>
+<li>编码方式足够简单，现有redis客户端仅对redis命令进行封装，更上层的封装仍需要自己实现</li>
+</ol>
+<h2 id="前期设计思路"><a href="#前期设计思路" class="headerlink" title="前期设计思路"></a>前期设计思路</h2><blockquote>
+<p>前期设计思路，实际编码与思路有差异</p>
+</blockquote>
+<p><img src="/images/posts/redis-mindx.png" alt="redis脑图"></p>
+<h2 id="实际实现思路"><a href="#实际实现思路" class="headerlink" title="实际实现思路"></a>实际实现思路</h2><ol>
+<li>缓存穿透：bloomFilter + 黑名单</li>
+<li>缓存击穿/缓存雪崩：随机TTL或永不过期（数据字典数据量小，不存在内存不足问题）</li>
+<li>数据字典类型数据：根据数据字典数据结构特点，使用 key:redisHash:&lt;dataKey:data&gt; 方式组织数据</li>
+<li>新增数据：更新bloomFilter，更新黑名单，插入redis</li>
+<li>删除数据：更新bloomFilter，更新黑名单，删除redis</li>
+<li>更新数据：更新redis，更新db</li>
+<li>查询数据：<ol>
+<li>bloomFilter过滤</li>
+<li>黑名单过滤</li>
+<li>缓存查找<ol>
+<li>缓存命中：返回数据</li>
+<li>缓存未命中：查询db<ol>
+<li>db查询到数据时，新增数据逻辑</li>
+<li>db未查询到数据时，删除数据逻辑</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>数据序列化：Kryo protoBuff等速度快，但使用不便，需要注册java对象类型，改用jackson2</li>
+</ol>
+
+
+    
+    
+    
+  </section>
+</article>
+    </div>
+  
 </section>
 
 
